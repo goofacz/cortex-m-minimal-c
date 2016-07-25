@@ -1,0 +1,46 @@
+# Set paths
+#TOOLCHAIN_PREFIX = 
+#JLINK_PREFIX = 
+
+CC = $(TOOLCHAIN_PREFIX)/arm-none-eabi-gcc
+LD = $(TOOLCHAIN_PREFIX)/arm-none-eabi-ld
+OBJCPY = $(TOOLCHAIN_PREFIX)/arm-none-eabi-objcopy
+GDB = $(TOOLCHAIN_PREFIX)/arm-none-eabi-gdb
+ 
+C_CPU_FLAGS = -mcpu=cortex-m4 -mthumb -mabi=aapcs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mabi=aapcs 
+C_DEBUG_FLAGS = -g
+C_OTHER_FLAGS = -ffunction-sections -fdata-sections -nostdlib -nostartfiles -nodefaultlibs
+C_OPTIMIZATION_FLAGS = -O0
+C_LANGUAGE_FLAGS = -std=c11
+
+CFLAGS = $(C_CPU_FLAGS) $(C_DEBUG_FLAGS) $(C_OTHER_FLAGS) $(C_OPTIMIZATION_FLAGS)
+LD_FLAGS = -T cortex_m4.ld -Map project.map --gc-sections --print-gc-sections
+ 
+SOURCES = vector_table.c interrupt.c application.c
+OBJECTS = $(SOURCES:.c=.o)
+
+all: project.hex project.bin
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c -o $@ $< $(CFLAGS)
+ 
+project.elf: $(OBJECTS)
+	$(LD) -o $@ $(LD_FLAGS) $^
+ 
+project.bin: project.elf
+	$(OBJCPY) -O binary $^ $@
+ 
+project.hex: project.elf
+	$(OBJCPY) -O ihex $^ $@
+ 
+clean:
+	rm -rf *.o *.elf *.bin *.hex *.map
+	
+flash:
+	$(JLINK_PREFIX)/JLinkExe -if swd -device nrf52832_xxaa -speed auto -CommanderScript jlink_exe_commands
+	
+gdbserver:
+	$(JLINK_PREFIX)/JLinkGDBServer -if swd -device nrf52832_xxaa -speed auto
+	
+gdb:
+	$(GDB) --command=gdb_commands

@@ -1,0 +1,7 @@
+target remote :2331
+file project.elf
+monitor reset
+monitor halt
+monitor endian little
+monitor speed auto
+monitor flash device nrf52832_xxaa

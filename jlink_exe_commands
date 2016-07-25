@@ -1,0 +1,8 @@
+halt
+w4 4001E504 2
+w4 4001E50C 1 
+Sleep 1000
+w4 4001E504 1
+Sleep 1000
+loadbin project.bin 0x0
+exit
