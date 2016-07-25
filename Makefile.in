@@ -3,13 +3,13 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 # Set paths
-#TOOLCHAIN_PREFIX = 
-#JLINK_PREFIX = 
+#TOOLCHAIN_PATH = 
+#JLINK_PATH = 
 
-CC = $(TOOLCHAIN_PREFIX)/arm-none-eabi-gcc
-LD = $(TOOLCHAIN_PREFIX)/arm-none-eabi-ld
-OBJCPY = $(TOOLCHAIN_PREFIX)/arm-none-eabi-objcopy
-GDB = $(TOOLCHAIN_PREFIX)/arm-none-eabi-gdb
+CC = $(TOOLCHAIN_PATH)/arm-none-eabi-gcc
+LD = $(TOOLCHAIN_PATH)/arm-none-eabi-ld
+OBJCPY = $(TOOLCHAIN_PATH)/arm-none-eabi-objcopy
+GDB = $(TOOLCHAIN_PATH)/arm-none-eabi-gdb
  
 C_CPU_FLAGS = -mcpu=cortex-m4 -mthumb -mabi=aapcs -mfloat-abi=hard -mfpu=fpv4-sp-d16 -mabi=aapcs 
 C_DEBUG_FLAGS = -g
@@ -41,10 +41,10 @@ clean:
 	rm -rf *.o *.elf *.bin *.hex *.map
 	
 flash:
-	$(JLINK_PREFIX)/JLinkExe -if swd -device nrf52832_xxaa -speed auto -CommanderScript jlink_exe_commands
+	$(JLINK_PATH)/JLinkExe -if swd -device nrf52832_xxaa -speed auto -CommanderScript jlink_exe_commands
 	
 gdbserver:
-	$(JLINK_PREFIX)/JLinkGDBServer -if swd -device nrf52832_xxaa -speed auto
+	$(JLINK_PATH)/JLinkGDBServer -if swd -device nrf52832_xxaa -speed auto
 	
 gdb:
 	$(GDB) --command=gdb_commands
