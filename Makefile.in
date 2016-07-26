@@ -28,7 +28,7 @@ all: project.hex project.bin
 	$(CC) $(CFLAGS) -c -o $@ $< $(CFLAGS)
  
 project.elf: $(OBJECTS)
-	$(CC) -o $@ $(LD_FLAGS) $^
+	$(CC) -o $@ $(C_CPU_FLAGS) $(LD_FLAGS) $^
  
 project.bin: project.elf
 	$(OBJCPY) -O binary $^ $@
