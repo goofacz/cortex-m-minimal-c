@@ -36,7 +36,7 @@ static void initialize_data_section (void)
     }
 }
 
-void interrupt_reset ()
+void interrupt_reset (void)
 {
     initialize_bss_section ();
     initialize_data_section ();
@@ -48,77 +48,77 @@ void interrupt_reset ()
     }
 }
 
-void interrupt_nmi ()
+void interrupt_nmi (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_hard_fault ()
+void interrupt_hard_fault (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_memmanage ()
+void interrupt_memmanage (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_bus_fault ()
+void interrupt_bus_fault (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_usage_fault ()
+void interrupt_usage_fault (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_reserved_0 ()
+void interrupt_reserved_0 (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_reserved_1 ()
+void interrupt_reserved_1 (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_reserved_2 ()
+void interrupt_reserved_2 (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_reserved_3 ()
+void interrupt_reserved_3 (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_svcall ()
+void interrupt_svcall (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_debug ()
+void interrupt_debug (void)
 {
     while (1)    {
         // ...
@@ -126,21 +126,21 @@ void interrupt_debug ()
 }
 
 
-void interrupt_reserved_4 ()
+void interrupt_reserved_4 (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_pendsv ()
+void interrupt_pendsv (void)
 {
     while (1)    {
         // ...
     }
 }
 
-void interrupt_systick ()
+void interrupt_systick (void)
 {
     while (1)    {
         // ...
