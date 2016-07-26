@@ -1,4 +1,4 @@
-# cortex-m-minimal-c
+# Minimal C startup code for Cortex 
 Minimal "*framework*" providing startup code and Makefile for building bare-metal C programs for Cortex-M4.
 
 # Target hardware
