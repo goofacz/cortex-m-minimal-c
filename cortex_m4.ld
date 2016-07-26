@@ -19,6 +19,23 @@ SECTIONS
         *(.text)
     } >FLASH
     
+    .data_flash_begin :
+    {
+        _DATA_FLASH_BEGIN = .;
+    } >FLASH
+
+    .data :
+    {
+        _DATA_RAM_BEGIN = .;
+        *(.data.*)
+        _DATA_RAM_END = .;
+    } >RAM AT >FLASH
+
+    .data_flash_end :
+    {
+        _DATA_FLASH_END = .;
+    } >FLASH
+
     .bss :
     {
         _BSS_BEGIN = .;

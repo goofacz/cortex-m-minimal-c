@@ -6,6 +6,10 @@
 
 extern uint32_t _BSS_BEGIN;
 extern uint32_t _BSS_END;
+extern uint32_t _DATA_FLASH_BEGIN;
+extern uint32_t _DATA_FLASH_END;
+extern uint32_t _DATA_RAM_BEGIN;
+extern uint32_t _DATA_RAM_END;
 
 extern int main (void);
 
@@ -16,9 +20,20 @@ static void initialize_bss_section (void)
     }
 }
 
+static void initialize_data_section (void)
+{
+    uint32_t* data_flash_word = &_DATA_FLASH_BEGIN;
+    for (uint32_t* data_ram_word = &_DATA_RAM_BEGIN; data_ram_word < &_DATA_RAM_END; data_ram_word++)
+    {
+        *data_ram_word = *data_flash_word;
+        data_flash_word++;
+    }
+}
+
 void interrupt_reset ()
 {
     initialize_bss_section ();
+    initialize_data_section ();
 
     main ();
     
