@@ -7,7 +7,7 @@ By default framework is configured for ARM Cortex-M4F and tested on Nordic NRF52
 # Required software
 This "*framework*" requires following components:
 - ARM GCC compiler (install `arm-none-eabi-gcc`)
-- SEGER J-Link (https://www.segger.com/downloads/)
+- SEGER J-Link tools (https://www.segger.com/downloads/jlink)
 - ARM GDB (install `arm-none-eabi-gdb`)
 
 # Configuration
