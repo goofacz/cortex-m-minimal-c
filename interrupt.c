@@ -15,18 +15,24 @@ extern int main (void);
 
 static void initialize_bss_section (void)
 {
-    for (uint32_t* bss_word = &_BSS_BEGIN; bss_word < &_BSS_END; bss_word++)    {
-        *bss_word = 0;
+    uint8_t* begin = (uint8_t*) &_BSS_BEGIN;
+    uint8_t* end = (uint8_t*) &_BSS_END;
+
+    for (uint8_t* bss_byte = begin; bss_byte < end; bss_byte++)    {
+        *bss_byte = 0;
     }
 }
 
 static void initialize_data_section (void)
 {
-    uint32_t* data_flash_word = &_DATA_FLASH_BEGIN;
-    for (uint32_t* data_ram_word = &_DATA_RAM_BEGIN; data_ram_word < &_DATA_RAM_END; data_ram_word++)
+    uint8_t* begin = (uint8_t*) &_DATA_RAM_BEGIN;
+    uint8_t* end = (uint8_t*) &_DATA_RAM_END;
+    uint8_t* data_flash_byte = (uint8_t*) &_DATA_FLASH_BEGIN;
+
+    for (uint8_t* data_ram_byte = begin; data_ram_byte < end; data_ram_byte++)
     {
-        *data_ram_word = *data_flash_word;
-        data_flash_word++;
+        *data_ram_byte = *data_flash_byte;
+        data_flash_byte++;
     }
 }
 
