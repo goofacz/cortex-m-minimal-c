@@ -2,10 +2,24 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+#include <stdint.h>
+
+extern uint32_t _BSS_BEGIN;
+extern uint32_t _BSS_END;
+
 extern int main (void);
+
+static void initialize_bss_section (void)
+{
+    for (uint32_t* bss_word = &_BSS_BEGIN; bss_word < &_BSS_END; bss_word++)    {
+        *bss_word = 0;
+    }
+}
 
 void interrupt_reset ()
 {
+    initialize_bss_section ();
+
     main ();
     
     while (1)    {
