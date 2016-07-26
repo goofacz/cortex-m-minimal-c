@@ -19,6 +19,11 @@ SECTIONS
         *(.text)
     } >FLASH
     
+    .rodata :
+    {
+        *(.rodata.*)
+    } >FLASH
+
     .data_flash_begin :
     {
         _DATA_FLASH_BEGIN = .;
