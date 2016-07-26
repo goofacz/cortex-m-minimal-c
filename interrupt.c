@@ -4,12 +4,12 @@
 
 #include <stdint.h>
 
-extern uint32_t _BSS_BEGIN;
-extern uint32_t _BSS_END;
-extern uint32_t _DATA_FLASH_BEGIN;
-extern uint32_t _DATA_FLASH_END;
-extern uint32_t _DATA_RAM_BEGIN;
-extern uint32_t _DATA_RAM_END;
+extern const uint32_t _BSS_BEGIN;
+extern const uint32_t _BSS_END;
+extern const uint32_t _DATA_FLASH_BEGIN;
+extern const uint32_t _DATA_FLASH_END;
+extern const uint32_t _DATA_RAM_BEGIN;
+extern const uint32_t _DATA_RAM_END;
 
 extern int main (void);
 
